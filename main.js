@@ -169,5 +169,22 @@ function revealCard() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const drawButton = document.getElementById('drawButton');
+  const audio = document.getElementById('backgroundMusic');
+  
+  audio.volume = 0.3;
+  audio.load();
+  
+  const playMusic = () => {
+    audio.play().catch(e => {
+      document.addEventListener('click', playMusic, {once: true});
+      document.addEventListener('touchstart', playMusic, {once: true});
+    });
+  };
+  playMusic();
+  
+  window.addEventListener('beforeunload', () => {
+    audio.pause();
+  });
+  
   drawButton.addEventListener('click', revealCard);
 });
