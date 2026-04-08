@@ -49,23 +49,6 @@ function getRandomMessage() {
   return tarotMessages[messageIndex];
 }
 
-function showHandAnimation() {
-  const hand = document.getElementById('magic-hand');
-  if (!hand) {
-    const handEl = document.createElement('div');
-    handEl.id = 'magic-hand';
-    handEl.style.cssText = 'position: fixed; width: 80px; height: 80px; background: radial-gradient(circle, var(--gold) 20%, transparent 50%); border-radius: 50%; z-index: 1000; pointer-events: none; opacity: 0; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0); transition: all 0.5s ease; box-shadow: 0 0 20px var(--gold);';
-    document.body.appendChild(handEl);
-  } else {
-    hand.style.opacity = '1';
-    hand.style.transform = 'translate(-50%, -50%) scale(1)';
-  }
-  setTimeout(() => {
-    hand.style.opacity = '0';
-    hand.style.transform = 'translate(-50%, -50%) scale(0)';
-  }, 800);
-}
-
 function getRandomCardIndex() {
   let newIndex;
   do {
@@ -76,57 +59,112 @@ function getRandomCardIndex() {
   return newIndex;
 }
 
-function shrinkCards(exceptIndex) {
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card, index) => {
-    if (index !== exceptIndex) {
-      card.classList.add('shrink');
-    }
+function shuffleCards() {
+  const cards = document.querySelectorAll('.card:not(.hidden)');
+  cards.forEach(card => {
+    card.classList.add('shuffle');
+    setTimeout(() => {
+      card.classList.remove('shuffle');
+    }, 500);
   });
 }
-
-function liftCard(cardIndex) {
-  const cards = document.querySelectorAll('.card');
-  const selectedCard = cards[cardIndex];
-  selectedCard.classList.add('lifted');
-  const messageEl = selectedCard.querySelector('.card-message');
-  messageEl.style.opacity = '0';
-  messageEl.textContent = getRandomMessage();
-  setTimeout(() => {
-    messageEl.style.transition = 'opacity 0.5s ease';
-    messageEl.style.opacity = '1';
-  }, 200);
-}
-
-
 
 function revealCard() {
-  const cards = document.querySelectorAll('.card');
   const drawButton = document.getElementById('drawButton');
+  const container = document.querySelector('.cards-container');
 
-  // Reset all cards
-  cards.forEach(card => {
-    card.classList.remove('lifted', 'shrink');
-  });
+  // Reset to 5 cards
+  container.innerHTML = `
+    <div class="card" data-card="0">
+      <div class="card-inner">
+        <div class="card-back">
+          <div class="card-pattern"></div>
+          <div class="card-symbol">✦</div>
+        </div>
+        <div class="card-front">
+          <div class="card-message"></div>
+          <button class="card-book-btn">Pick a message</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-card="1">
+      <div class="card-inner">
+        <div class="card-back">
+          <div class="card-pattern"></div>
+          <div class="card-symbol">✦</div>
+        </div>
+        <div class="card-front">
+          <div class="card-message"></div>
+          <button class="card-book-btn">Pick a message</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-card="2">
+      <div class="card-inner">
+        <div class="card-back">
+          <div class="card-pattern"></div>
+          <div class="card-symbol">✦</div>
+        </div>
+        <div class="card-front">
+          <div class="card-message"></div>
+          <button class="card-book-btn">Pick a message</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-card="3">
+      <div class="card-inner">
+        <div class="card-back">
+          <div class="card-pattern"></div>
+          <div class="card-symbol">✦</div>
+        </div>
+        <div class="card-front">
+          <div class="card-message"></div>
+          <button class="card-book-btn">Pick a message</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-card="4">
+      <div class="card-inner">
+        <div class="card-back">
+          <div class="card-pattern"></div>
+          <div class="card-symbol">✦</div>
+        </div>
+        <div class="card-front">
+          <div class="card-message"></div>
+          <button class="card-book-btn">Pick a message</button>
+        </div>
+      </div>
+    </div>
+  `;
 
+  const cards = document.querySelectorAll('.card');
   drawButton.disabled = true;
   drawButton.style.opacity = '0.6';
   drawButton.style.cursor = 'not-allowed';
 
-  showHandAnimation();
+  shuffleCards();
 
   setTimeout(() => {
     const randomCardIndex = getRandomCardIndex();
-    shrinkCards(randomCardIndex);
+    const selectedCard = cards[randomCardIndex];
+    const messageEl = selectedCard.querySelector('.card-message');
+    messageEl.textContent = getRandomMessage();
+
+    // Hide all except selected and flip it
+    cards.forEach((card, index) => {
+      if (index !== randomCardIndex) {
+        card.classList.add('hidden');
+      }
+    });
+    selectedCard.classList.add('flipped');
+    document.querySelector('.cards-container').classList.add('reveal');
+
     setTimeout(() => {
-      liftCard(randomCardIndex);
-      setTimeout(() => {
-        drawButton.disabled = false;
-        drawButton.style.opacity = '1';
-        drawButton.style.cursor = 'pointer';
-      }, 1200);
-    }, 300);
-  }, 500);
+      drawButton.disabled = false;
+      drawButton.style.opacity = '1';
+      drawButton.style.cursor = 'pointer';
+    }, 1200);
+  }, 700);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
