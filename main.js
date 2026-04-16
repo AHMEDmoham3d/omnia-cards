@@ -139,7 +139,7 @@ drawButton.disabled = true;
     drawButton.style.opacity = '1';
     drawButton.style.cursor = 'pointer';
     drawButton.style.display = 'block';
-    drawButton.innerHTML = '<span class="button-text">Pick another message</span><span class="button-glow"></span>';
+// drawButton.innerHTML = '<span class="button-text">Pick another message</span><span class="button-glow"></span>';
   }, 8000);
   drawButton.style.opacity = '0.6';
   drawButton.style.cursor = 'not-allowed';
@@ -169,7 +169,20 @@ drawButton.disabled = true;
     // Hide draw button during message display
     // drawButton.style.display = 'none';
     
-    document.querySelector('.cards-container').classList.add('reveal');
+document.querySelector('.cards-container').classList.add('reveal');
+    
+    // Hide title and subtitle to save space
+    document.querySelector('.title').style.opacity = '0';
+    document.querySelector('.title').style.visibility = 'hidden';
+    document.querySelector('.subtitle').style.opacity = '0';
+    document.querySelector('.subtitle').style.visibility = 'hidden';
+    
+    // Optional: Hide instructions too
+    const instructions = document.querySelector('.instructions');
+    if (instructions) {
+      instructions.style.opacity = '0';
+      instructions.style.visibility = 'hidden';
+    }
   }, 700);
   } catch (error) {
     console.error('Reveal card error:', error);
