@@ -1,7 +1,7 @@
-# Task: Fix card message display (full visibility on flip, no clipping)
+# TODO Steps for Affirmations Update
 
-## Steps:
-- [x] Step 1: Edit style.css - Add expanding height for flipped cards and proper text wrapping.
-- [x] Step 2: Test the fix - Click draw button multiple times, check messages fully visible.
-- [x] Step 3: Responsive test - Check on mobile sizes.
-- [x] Step 4: Mark complete and demo.
+## [x] Step 1: Create TODO.md ✓
+## [x] Step 2: Edit main.js - replace tarotMessages array ✓
+## [x] Step 3: Update TODO.md with completion ✓
+## [x] Step 4: Test the app (verified via code review - messages updated correctly, logic intact)
+## [ ] Step 5: Complete task (current)
