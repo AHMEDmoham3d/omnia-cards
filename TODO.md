@@ -1,25 +1,28 @@
-# Fix Tarot Button Deployment Bug
+# Fix "Pick a message" Button - Card Not Showing Issue
 
-## Plan Summary
-Fix "Pick a message" button not working on first click after deployment (works locally).
+## Approved Plan Steps:
 
-## TODO Steps
-### ✅ Step 1: Update main.js
-- Remove audio autoplay interference
-- Play audio on button click only  
-- Add error handling in revealCard()
-- Ensure button click works immediately
+### 1. [x] Fix 404 Cache Issue
+- Add cache-busting to main.js script tag
+- Instruct hard refresh (Ctrl+Shift+R)
 
-### ✅ Step 2: Update index.html  
-- Fix music.mp3 path to "/music.mp3" for deployment
+### 2. [x] Add Debug Logs to main.js
+- Log button click
+- Log revealCard execution
+- Log message set and card flip
 
-### ✅ Step 3: Test locally
-- Run `npx serve .` or Python server
-- Click button → card reveals + audio plays
+### 3. [x] Verify/Fix CSS for Card Front Visibility
+- Ensure .card-front shows message when .flipped
+- Tweak .card-message sizing/overflow on mobile
 
-### [ ] Step 4: Deploy & verify
-- Deploy changes
-- Test first button click works
+### 4. [x] Test Flow
+- Open index.html
+- Hard refresh
+- Click button → shuffle → flip → message visible?
+- Check console for logs/errors
 
-### [ ] Step 5: Complete
-**Button works on first click deployed!**
+### 5. [x] Optional: Add Reset Button
+- Enable multiple reveals without refresh
+
+### 6. [x] Cleanup & Complete
+

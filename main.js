@@ -68,6 +68,7 @@ function shuffleCards() {
 }
 
 function revealCard() {
+  console.log('DEBUG: revealCard started');
   try {
     const drawButton = document.getElementById('drawButton');
     const container = document.querySelector('.cards-container');
@@ -132,7 +133,14 @@ function revealCard() {
   
 
   const cards = document.querySelectorAll('.card');
-  drawButton.disabled = true;
+drawButton.disabled = true;
+  setTimeout(() => {
+    drawButton.disabled = false;
+    drawButton.style.opacity = '1';
+    drawButton.style.cursor = 'pointer';
+    drawButton.style.display = 'block';
+    drawButton.innerHTML = '<span class="button-text">Pick another message</span><span class="button-glow"></span>';
+  }, 8000);
   drawButton.style.opacity = '0.6';
   drawButton.style.cursor = 'not-allowed';
   
@@ -145,7 +153,9 @@ function revealCard() {
     const randomCardIndex = getRandomCardIndex();
     const selectedCard = cards[randomCardIndex];
     const messageEl = selectedCard.querySelector('.card-message');
-    messageEl.textContent = getRandomMessage();
+    const message = getRandomMessage();
+    messageEl.textContent = message;
+    console.log('DEBUG: Message set:', message);
 
     // Hide all except selected and flip it
     cards.forEach((card, index) => {
@@ -154,9 +164,10 @@ function revealCard() {
       }
     });
     selectedCard.classList.add('flipped');
+    console.log('DEBUG: Card flipped, index:', randomCardIndex);
     
     // Hide draw button during message display
-    drawButton.style.display = 'none';
+    // drawButton.style.display = 'none';
     
     document.querySelector('.cards-container').classList.add('reveal');
   }, 700);
@@ -177,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   drawButton.addEventListener('click', () => {
+    console.log('DEBUG: Pick a message button clicked');
     // Play audio on first user interaction (fixes autoplay issues)
     audio.play().catch(e => console.log('Audio play failed:', e));
     revealCard();
