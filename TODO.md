@@ -1,12 +1,25 @@
-# Tarot Card Button Removal Task + Hide Draw Button
-✅ Steps 1-2 Complete. Feedback: Hide #drawButton after message shows (temp).
+# Fix Tarot Button Deployment Bug
 
-✅ Step 3a Complete: drawButton hidden with display:none after flip, shown after 1.2s.
+## Plan Summary
+Fix "Pick a message" button not working on first click after deployment (works locally).
 
-✅ Step 3c Complete: Added .card.flipped { transform: scale(1.3) !important; } for larger revealed card.
+## TODO Steps
+### ✅ Step 1: Update main.js
+- Remove audio autoplay interference
+- Play audio on button click only  
+- Add error handling in revealCard()
+- Ensure button click works immediately
 
-## [ ] Step 3b: Test full
-- Open index.html → click → large card with message only + drawButton hidden → reappears.
+### ✅ Step 2: Update index.html  
+- Fix music.mp3 path to "/music.mp3" for deployment
 
-## [x] Step 4: Complete
-**Ready!**
+### ✅ Step 3: Test locally
+- Run `npx serve .` or Python server
+- Click button → card reveals + audio plays
+
+### [ ] Step 4: Deploy & verify
+- Deploy changes
+- Test first button click works
+
+### [ ] Step 5: Complete
+**Button works on first click deployed!**

@@ -68,11 +68,12 @@ function shuffleCards() {
 }
 
 function revealCard() {
-  const drawButton = document.getElementById('drawButton');
-  const container = document.querySelector('.cards-container');
+  try {
+    const drawButton = document.getElementById('drawButton');
+    const container = document.querySelector('.cards-container');
 
-  // Reset to 5 cards (no Book Now buttons)
-  container.innerHTML = `
+    // Reset to 5 cards (no Book Now buttons)
+    container.innerHTML = `
 <div class="card" data-card="0">
   <div class="card-inner">
     <div class="card-back">
@@ -128,6 +129,7 @@ function revealCard() {
     </div>
   </div>
 </div>`;
+  
 
   const cards = document.querySelectorAll('.card');
   drawButton.disabled = true;
@@ -157,9 +159,11 @@ function revealCard() {
     drawButton.style.display = 'none';
     
     document.querySelector('.cards-container').classList.add('reveal');
-
-    // Button stays hidden permanently after first reveal
   }, 700);
+  } catch (error) {
+    console.error('Reveal card error:', error);
+    alert('Error revealing card. Check console.');
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -167,20 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('backgroundMusic');
   
   audio.volume = 0.3;
-  audio.load();
-  
-  const playMusic = () => {
-    audio.play().catch(e => {
-      document.addEventListener('click', playMusic, {once: true});
-      document.addEventListener('touchstart', playMusic, {once: true});
-    });
-  };
-  playMusic();
   
   window.addEventListener('beforeunload', () => {
     audio.pause();
   });
   
-  drawButton.addEventListener('click', revealCard);
+  drawButton.addEventListener('click', () => {
+    // Play audio on first user interaction (fixes autoplay issues)
+    audio.play().catch(e => console.log('Audio play failed:', e));
+    revealCard();
+  });
 });
 
