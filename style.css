@@ -111,8 +111,8 @@ body {
 }
 
 .cards-container.reveal .card {
-  width: 420px;
-  height: 680px;
+  width: 350px;
+  height: 550px;
 }
 
 .card:hover {
@@ -132,7 +132,7 @@ body {
 }
 
 .cards-container.reveal .card.flipped {
-  transform: translateY(-100px) scale(1.15) !important;
+  transform: translateY(-80px) scale(0.6) !important;
 }
 
 .card.flipped .card-back {
