@@ -1,5 +1,3 @@
-import './style.css'
-
 const tarotMessages = [
   "Come back to yourself, You are safe to be you.",
   "You are enough, exactly as you are.",
@@ -73,74 +71,71 @@ function revealCard() {
   const drawButton = document.getElementById('drawButton');
   const container = document.querySelector('.cards-container');
 
-  // Reset to 5 cards
+  // Reset to 5 cards (no Book Now buttons)
   container.innerHTML = `
-    <div class="card" data-card="0">
-      <div class="card-inner">
-        <div class="card-back">
-          <div class="card-pattern"></div>
-          <div class="card-symbol">✦</div>
-        </div>
-        <div class="card-front">
-          <div class="card-message"></div>
-          <button class="card-book-btn">Pick a message</button>
-        </div>
-      </div>
+<div class="card" data-card="0">
+  <div class="card-inner">
+    <div class="card-back">
+      <div class="card-pattern"></div>
+      <div class="card-symbol">✦</div>
     </div>
-    <div class="card" data-card="1">
-      <div class="card-inner">
-        <div class="card-back">
-          <div class="card-pattern"></div>
-          <div class="card-symbol">✦</div>
-        </div>
-        <div class="card-front">
-          <div class="card-message"></div>
-          <button class="card-book-btn">Pick a message</button>
-        </div>
-      </div>
+    <div class="card-front">
+      <div class="card-message"></div>
     </div>
-    <div class="card" data-card="2">
-      <div class="card-inner">
-        <div class="card-back">
-          <div class="card-pattern"></div>
-          <div class="card-symbol">✦</div>
-        </div>
-        <div class="card-front">
-          <div class="card-message"></div>
-          <button class="card-book-btn">Pick a message</button>
-        </div>
-      </div>
+  </div>
+</div>
+<div class="card" data-card="1">
+  <div class="card-inner">
+    <div class="card-back">
+      <div class="card-pattern"></div>
+      <div class="card-symbol">✦</div>
     </div>
-    <div class="card" data-card="3">
-      <div class="card-inner">
-        <div class="card-back">
-          <div class="card-pattern"></div>
-          <div class="card-symbol">✦</div>
-        </div>
-        <div class="card-front">
-          <div class="card-message"></div>
-          <button class="card-book-btn">Pick a message</button>
-        </div>
-      </div>
+    <div class="card-front">
+      <div class="card-message"></div>
     </div>
-    <div class="card" data-card="4">
-      <div class="card-inner">
-        <div class="card-back">
-          <div class="card-pattern"></div>
-          <div class="card-symbol">✦</div>
-        </div>
-        <div class="card-front">
-          <div class="card-message"></div>
-          <button class="card-book-btn">Pick a message</button>
-        </div>
-      </div>
+  </div>
+</div>
+<div class="card" data-card="2">
+  <div class="card-inner">
+    <div class="card-back">
+      <div class="card-pattern"></div>
+      <div class="card-symbol">✦</div>
     </div>
-  `;
+    <div class="card-front">
+      <div class="card-message"></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card="3">
+  <div class="card-inner">
+    <div class="card-back">
+      <div class="card-pattern"></div>
+      <div class="card-symbol">✦</div>
+    </div>
+    <div class="card-front">
+      <div class="card-message"></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-card="4">
+  <div class="card-inner">
+    <div class="card-back">
+      <div class="card-pattern"></div>
+      <div class="card-symbol">✦</div>
+    </div>
+    <div class="card-front">
+      <div class="card-message"></div>
+    </div>
+  </div>
+</div>`;
 
   const cards = document.querySelectorAll('.card');
   drawButton.disabled = true;
   drawButton.style.opacity = '0.6';
   drawButton.style.cursor = 'not-allowed';
+  
+  // Hide button early during animation
+  drawButton.style.display = 'none';
 
   shuffleCards();
 
@@ -157,13 +152,13 @@ function revealCard() {
       }
     });
     selectedCard.classList.add('flipped');
+    
+    // Hide draw button during message display
+    drawButton.style.display = 'none';
+    
     document.querySelector('.cards-container').classList.add('reveal');
 
-    setTimeout(() => {
-      drawButton.disabled = false;
-      drawButton.style.opacity = '1';
-      drawButton.style.cursor = 'pointer';
-    }, 1200);
+    // Button stays hidden permanently after first reveal
   }, 700);
 }
 
@@ -188,3 +183,4 @@ document.addEventListener('DOMContentLoaded', () => {
   
   drawButton.addEventListener('click', revealCard);
 });
+
