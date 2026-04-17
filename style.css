@@ -203,6 +203,21 @@ body {
   position: relative;
 }
 
+.card.flipped .card-book-btn {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  margin-top: 0;
+}
+
+.cards-container.reveal .card.flipped .card-book-btn {
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
 .card-message {
   font-size: 1.35rem;
   line-height: 1.6;

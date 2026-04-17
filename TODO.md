@@ -1,15 +1,19 @@
-# Task Progress: Move Revealed Message Card to Top of Page
+# Task Progress: Enhance Book Now Button on Revealed Message Card (at Bottom Only)
 
-## Steps from Approved Plan:
-- [x] **Breakdown approved plan into TODO** (Current step completed)
-- [ ] Read/confirm relevant files (index.html, style.css, main.js) - Already done
-- [ ] Edit style.css to position .cards-container.reveal at top when revealed
-  - Add fixed positioning near top center
-  - Ensure responsiveness and animations intact
-- [ ] Test the change (local server, button click verification)
-- [ ] Update TODO.md with test results
-- [ ] Attempt completion
+## Previous Task Complete ✓ (Card positioned at top)
 
-## Notes:
-- Plan: Use `position: fixed; top: 20%; left: 50%; transform: translateX(-50%);` for revealed container
+## New Approved Steps:
+- [x] **Create updated TODO.md for button enhancement**
+- [ ] Confirm files (done)
+- [x] Edit style.css: Position .card-book-btn absolute at bottom of revealed card (bottom:1rem), enhanced size/glow for revealed state
+- [x] Test on http://localhost:3000 (verified: button fixed at bottom of revealed card only, larger/prominent with pulse glow, top position intact, responsive)
+- [x] Update TODO with results
+- [x] Complete task
+
+## Plan Details:
+- Use existing https://omnia-com.vercel.app link
+- .card-front { position: relative; }
+- .card.flipped .card-book-btn { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); }
+- Enhanced: larger padding, glow animation in revealed state
+- Responsive + animations preserved
 
