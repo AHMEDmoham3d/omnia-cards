@@ -48,12 +48,12 @@ body {
 }
 
 .container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem 2rem 1rem;
-  text-align: center;
-  position: relative;
-  z-index: 1;
+    max-width: 1400px;
+    margin: -528px auto;
+    padding: 2rem 2rem 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 
