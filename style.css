@@ -1,3 +1,247 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --deep-purple: #1a0a2e;
+  --mystical-purple: #2d1b4e;
+  --gold: #d4af37;
+  --light-gold: #f4e5c3;
+  --dark-bg: #0f0519;
+  --card-bg: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 100%);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', 'Garamond', serif;
+  background: radial-gradient(circle at top center, var(--mystical-purple) 0%, var(--dark-bg) 100%);
+  min-height: 100vh;
+  color: var(--light-gold);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 60px 70px, white, transparent),
+    radial-gradient(1px 1px at 50px 50px, white, transparent),
+    radial-gradient(1px 1px at 130px 80px, white, transparent),
+    radial-gradient(2px 2px at 90px 10px, white, transparent);
+  background-size: 200px 200px;
+  animation: twinkle 3s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: 0.3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--gold), var(--light-gold), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--light-gold);
+  opacity: 0.8;
+  margin-bottom: 4rem;
+  font-style: italic;
+  letter-spacing: 0.1rem;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 4rem auto;
+  flex-wrap: wrap;
+  perspective: 1000px;
+  position: relative;
+}
+
+.card.hidden {
+  display: none;
+}
+
+.card {
+  width: 220px;
+  height: 380px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.cards-container.reveal .card {
+  width: 260px;
+  height: 360px;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card.flipped .card-back {
+  display: none !important;
+}
+
+.card-back,
+.card-front {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+}
+
+.card-back {
+  background: var(--card-bg);
+  border: 2px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.1) 10px, rgba(212, 175, 55, 0.1) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.1) 10px, rgba(212, 175, 55, 0.1) 20px);
+}
+
+.card-symbol {
+  font-size: 4rem;
+  color: var(--gold);
+  z-index: 1;
+  text-shadow: 0 0 20px var(--gold);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.card-front {
+  background: var(--card-bg);
+  border: 2px solid var(--gold);
+  transform: rotateY(180deg);
+  padding: 1.5rem;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+.card-message {
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: var(--light-gold);
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 0.02rem;
+  opacity: 1 !important;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+
+.cards-container.reveal .card-message {
+  font-size: 1.6rem;
+  line-height: 1.3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  padding: 3.5rem 1.2rem !important;
+  height: 100% !important;
+  min-height: 180px;
+  overflow: visible !important;
+}
+
+.card-book-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 1.6rem;
+  background: linear-gradient(135deg, var(--gold), var(--light-gold));
+  color: var(--deep-purple);
+  border: none;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.6);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.card-book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.8);
+}
+
 .card-secondary-btn {
   margin-top: 0.5rem;
   padding: 0.6rem 1.2rem;
@@ -22,3 +266,155 @@
   transform: translateY(-1px);
   box-shadow: 0 5px 15px rgba(212, 175, 55, 0.5);
 }
+
+.draw-button {
+  position: relative;
+  margin: 3rem auto;
+  padding: 1.2rem 3rem;
+  font-size: 1.3rem;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(135deg, var(--mystical-purple), var(--deep-purple));
+  border: 2px solid var(--gold);
+  border-radius: 50px;
+  color: var(--light-gold);
+  cursor: pointer;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+}
+
+.draw-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5);
+  border-color: var(--light-gold);
+}
+
+.draw-button:active {
+  transform: translateY(-1px);
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.button-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.draw-button:hover .button-glow {
+  width: 300px;
+  height: 300px;
+}
+
+.instructions {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: var(--light-gold);
+  opacity: 0.6;
+  font-style: italic;
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+.card.shuffle {
+  animation: shuffle 0.5s ease-in-out;
+}
+
+@keyframes shuffle {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-15px) rotate(-5deg); }
+  75% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.card.fade-out {
+  opacity: 0;
+  transform: scale(0.8) translateY(20px);
+  transition: all 0.5s ease-out;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .cards-container {
+    gap: 1.5rem;
+  }
+
+  .card {
+    width: 150px;
+    height: 240px;
+  }
+
+  .card-symbol {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    gap: 1rem;
+  }
+
+  .card {
+    width: 130px;
+    height: 200px;
+  }
+
+  .card.flipped {
+    transform: scale(1.4) !important;
+  }
+
+  .cards-container.reveal .card {
+    width: 240px !important;
+    height: 340px !important;
+  }
+
+  .card-message {
+    font-size: 1.1rem !important;
+    line-height: 1.3 !important;
+    padding: 0.4rem 0.5rem !important;
+    overflow: visible !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    height: auto !important;
+    scrollbar-width: thin !important;
+  }
+
+  .draw-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-container {
+    gap: 0.8rem;
+  }
+
+  .card {
+    width: 100px;
+    height: 160px;
+  }
+
+  .card-symbol {
+    font-size: 2rem;
+  }
+
+  .card-message {
+    font-size: 0.7rem;
+  }
+}
+
+
