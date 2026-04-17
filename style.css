@@ -50,7 +50,7 @@ body {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: 2rem 2rem 1rem;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -120,8 +120,8 @@ body {
 }
 
 .cards-container.reveal .card {
-  width: 220px;
-  height: 380px;
+  width: 260px;
+  height: 360px;
 }
 
 .card:hover {
@@ -284,15 +284,15 @@ body {
 }
 
 .cards-container.reveal .card-message {
-  font-size: 1.8rem;
-  line-height: 1.5;
+  font-size: 1.6rem;
+  line-height: 1.3;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem 1.5rem !important;
+  padding: 1.5rem 1.2rem !important;
   height: 100% !important;
-  min-height: 200px;
+  min-height: 180px;
   overflow: visible !important;
 }
 
@@ -442,14 +442,14 @@ body {
   }
 
   .cards-container.reveal .card {
-    width: 280px !important;
-    height: 420px !important;
+    width: 240px !important;
+    height: 340px !important;
   }
 
   .card-message {
     font-size: 1.1rem !important;
-    line-height: 1.4 !important;
-    padding: 0.5rem !important;
+    line-height: 1.3 !important;
+    padding: 0.4rem 0.5rem !important;
     overflow: visible !important;
     white-space: pre-wrap !important;
     word-wrap: break-word !important;

@@ -11,7 +11,8 @@
 - style.css: Added .fade-out class for smooth hide, improved .reveal .card-message sizing/overflow, mobile reveal card enlargement (280x420px), pre-wrap text.
 - Retained .hidden {display:none} as fallback, but uses fade-out primarily.
 
-Reload index.html and test the "Pick a message" button. It should now smoothly shuffle, flip one card with message visible, fade others, hide titles, show "Book Now". Click again to reset and repeat.
+**Follow-up fixes applied:** Reduced revealed card size (width 260px, height 380px; mobile 240x340px), tightened .card-message padding/line-height, reduced container padding-top to minimize space below card.
+Reload index.html and test.
 
 Task complete: Button now shows the card page reliably.
 
