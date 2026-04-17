@@ -94,6 +94,21 @@ body {
   position: relative;
 }
 
+.cards-container.reveal {
+  position: fixed !important;
+  top: 15vh !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 90vw !important;
+  max-width: 1400px !important;
+  height: auto !important;
+  z-index: 1000 !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 2rem !important;
+  box-shadow: none !important;
+}
+
 .card.hidden {
   display: none;
 }

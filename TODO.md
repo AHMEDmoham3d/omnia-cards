@@ -1,18 +1,15 @@
-# Fix 'Pick a message' button not showing card page
+# Task Progress: Move Revealed Message Card to Top of Page
 
-## Plan Steps:
-- [x] Step 1: Update main.js - Add full reset logic, improve hiding with opacity/transform, longer timeouts, reliable animations.
-- [x] Step 2: Update style.css - Change .hidden to opacity/transform fade (.fade-out), smooth reveal transitions, fix mobile message visibility (larger fonts, pre-wrap).
-- [x] Step 3: Test changes - Reload page, click button multiple times, check console/mobile.
-- [x] Step 4: Complete task.
+## Steps from Approved Plan:
+- [x] **Breakdown approved plan into TODO** (Current step completed)
+- [ ] Read/confirm relevant files (index.html, style.css, main.js) - Already done
+- [ ] Edit style.css to position .cards-container.reveal at top when revealed
+  - Add fixed positioning near top center
+  - Ensure responsiveness and animations intact
+- [ ] Test the change (local server, button click verification)
+- [ ] Update TODO.md with test results
+- [ ] Attempt completion
 
-## Changes Summary:
-- main.js: Added full UI reset (titles, etc.), sequential animations (shuffle 1s -> flip -> fade-out others 0.3s later), extended timings (6s reset), error handling for button.
-- style.css: Added .fade-out class for smooth hide, improved .reveal .card-message sizing/overflow, mobile reveal card enlargement (280x420px), pre-wrap text.
-- Retained .hidden {display:none} as fallback, but uses fade-out primarily.
-
-**Follow-up fixes applied:** Reduced revealed card size (width 260px, height 380px; mobile 240x340px), tightened .card-message padding/line-height, reduced container padding-top to minimize space below card.
-Reload index.html and test.
-
-Task complete: Button now shows the card page reliably.
+## Notes:
+- Plan: Use `position: fixed; top: 20%; left: 50%; transform: translateX(-50%);` for revealed container
 
