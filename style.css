@@ -100,6 +100,13 @@ body {
   justify-content: center;
 }
 
+.card.fade-out {
+  opacity: 0;
+  transform: scale(0.8) translateY(20px);
+  transition: all 0.5s ease-out;
+  pointer-events: none;
+}
+
 .card.hidden {
   display: none;
 }
@@ -269,7 +276,7 @@ body {
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  white-space: normal;
+  white-space: pre-wrap;
   word-wrap: break-word;
   padding: 1rem;
   scrollbar-width: thin;
@@ -277,14 +284,16 @@ body {
 }
 
 .cards-container.reveal .card-message {
-  font-size: 2.6rem;
-  line-height: 1.3;
+  font-size: 1.8rem;
+  line-height: 1.5;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem 1rem 5rem 1rem;
-  margin-top: 6rem;
+  padding: 2rem 1.5rem !important;
+  height: 100% !important;
+  min-height: 200px;
+  overflow: visible !important;
 }
 
 .card-message::-webkit-scrollbar {
@@ -339,9 +348,9 @@ body {
   box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
 }
 
-.cards-container.reveal + .draw-button {
+/* .cards-container.reveal + .draw-button {
   display: none;
-}
+} */
 
 .draw-button:hover {
   transform: translateY(-3px);
@@ -432,17 +441,18 @@ body {
     transform: scale(1.4) !important;
   }
 
+  .cards-container.reveal .card {
+    width: 280px !important;
+    height: 420px !important;
+  }
+
   .card-message {
-    font-size: 0.65rem !important;
-    line-height: 1.15 !important;
-    padding: 0rem !important;
-    overflow-y: auto !important;
-    white-space: normal !important;
+    font-size: 1.1rem !important;
+    line-height: 1.4 !important;
+    padding: 0.5rem !important;
+    overflow: visible !important;
+    white-space: pre-wrap !important;
     word-wrap: break-word !important;
-    max-height: none !important;
-    -webkit-line-clamp: unset !important;
-    line-clamp: unset !important;
-    display: block !important;
     height: auto !important;
     scrollbar-width: thin !important;
   }

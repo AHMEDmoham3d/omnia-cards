@@ -1,28 +1,17 @@
-# Fix "Pick a message" Button - Card Not Showing Issue
+# Fix 'Pick a message' button not showing card page
 
-## Approved Plan Steps:
+## Plan Steps:
+- [x] Step 1: Update main.js - Add full reset logic, improve hiding with opacity/transform, longer timeouts, reliable animations.
+- [x] Step 2: Update style.css - Change .hidden to opacity/transform fade (.fade-out), smooth reveal transitions, fix mobile message visibility (larger fonts, pre-wrap).
+- [x] Step 3: Test changes - Reload page, click button multiple times, check console/mobile.
+- [x] Step 4: Complete task.
 
-### 1. [x] Fix 404 Cache Issue
-- Add cache-busting to main.js script tag
-- Instruct hard refresh (Ctrl+Shift+R)
+## Changes Summary:
+- main.js: Added full UI reset (titles, etc.), sequential animations (shuffle 1s -> flip -> fade-out others 0.3s later), extended timings (6s reset), error handling for button.
+- style.css: Added .fade-out class for smooth hide, improved .reveal .card-message sizing/overflow, mobile reveal card enlargement (280x420px), pre-wrap text.
+- Retained .hidden {display:none} as fallback, but uses fade-out primarily.
 
-### 2. [x] Add Debug Logs to main.js
-- Log button click
-- Log revealCard execution
-- Log message set and card flip
+Reload index.html and test the "Pick a message" button. It should now smoothly shuffle, flip one card with message visible, fade others, hide titles, show "Book Now". Click again to reset and repeat.
 
-### 3. [x] Verify/Fix CSS for Card Front Visibility
-- Ensure .card-front shows message when .flipped
-- Tweak .card-message sizing/overflow on mobile
-
-### 4. [x] Test Flow
-- Open index.html
-- Hard refresh
-- Click button → shuffle → flip → message visible?
-- Check console for logs/errors
-
-### 5. [x] Optional: Add Reset Button
-- Enable multiple reveals without refresh
-
-### 6. [x] Cleanup & Complete
+Task complete: Button now shows the card page reliably.
 

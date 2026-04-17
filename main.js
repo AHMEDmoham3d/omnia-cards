@@ -58,7 +58,7 @@ function getRandomCardIndex() {
 }
 
 function shuffleCards() {
-  const cards = document.querySelectorAll('.card:not(.hidden)');
+  const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     card.classList.add('shuffle');
     setTimeout(() => {
@@ -70,122 +70,89 @@ function shuffleCards() {
 function revealCard() {
   console.log('DEBUG: revealCard started');
   try {
+    // Reset previous state
+    document.querySelector('.cards-container').classList.remove('reveal');
+    const title = document.querySelector('.title');
+    const subtitle = document.querySelector('.subtitle');
+    const instructions = document.querySelector('.instructions');
+    title.style.opacity = '1';
+    title.style.visibility = 'visible';
+    subtitle.style.opacity = '1';
+    subtitle.style.visibility = 'visible';
+    if (instructions) {
+      instructions.style.opacity = '1';
+      instructions.style.visibility = 'visible';
+    }
+
     const drawButton = document.getElementById('drawButton');
     const container = document.querySelector('.cards-container');
-
-    // Reset to 5 cards (no Book Now buttons)
-    container.innerHTML = `
-<div class="card" data-card="0">
-  <div class="card-inner">
-    <div class="card-back">
-      <div class="card-pattern"></div>
-      <div class="card-symbol">✦</div>
-    </div>
-    <div class="card-front">
-      <div class="card-message"></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-card="1">
-  <div class="card-inner">
-    <div class="card-back">
-      <div class="card-pattern"></div>
-      <div class="card-symbol">✦</div>
-    </div>
-    <div class="card-front">
-      <div class="card-message"></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-card="2">
-  <div class="card-inner">
-    <div class="card-back">
-      <div class="card-pattern"></div>
-      <div class="card-symbol">✦</div>
-    </div>
-    <div class="card-front">
-      <div class="card-message"></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-card="3">
-  <div class="card-inner">
-    <div class="card-back">
-      <div class="card-pattern"></div>
-      <div class="card-symbol">✦</div>
-    </div>
-    <div class="card-front">
-      <div class="card-message"></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-card="4">
-  <div class="card-inner">
-    <div class="card-back">
-      <div class="card-pattern"></div>
-      <div class="card-symbol">✦</div>
-    </div>
-    <div class="card-front">
-      <div class="card-message"></div>
-    </div>
-  </div>
-</div>`;
-  
-
-  const cards = document.querySelectorAll('.card');
-drawButton.disabled = true;
-  setTimeout(() => {
-    drawButton.disabled = false;
-    drawButton.style.opacity = '1';
-    drawButton.style.cursor = 'pointer';
-    drawButton.style.display = 'block';
-// drawButton.innerHTML = '<span class="button-text">Pick another message</span><span class="button-glow"></span>';
-  }, 8000);
-  drawButton.style.opacity = '0.6';
-  drawButton.style.cursor = 'not-allowed';
-  
-  // Hide button early during animation
-  drawButton.style.display = 'none';
-
-  shuffleCards();
-
-  setTimeout(() => {
-    const randomCardIndex = getRandomCardIndex();
-    const selectedCard = cards[randomCardIndex];
-    const messageEl = selectedCard.querySelector('.card-message');
-    const message = getRandomMessage();
-    messageEl.textContent = message;
-    console.log('DEBUG: Message set:', message);
-
-    // Hide all except selected and flip it
-    cards.forEach((card, index) => {
-      if (index !== randomCardIndex) {
-        card.classList.add('hidden');
-      }
+    const cards = document.querySelectorAll('.card');
+    
+    // Clear all states first
+    cards.forEach(card => {
+      const msg = card.querySelector('.card-message');
+      if (msg) msg.textContent = '';
+      card.classList.remove('flipped', 'hidden', 'fade-out');
     });
-    selectedCard.classList.add('flipped');
-    console.log('DEBUG: Card flipped, index:', randomCardIndex);
+
+    drawButton.disabled = true;
+    drawButton.style.opacity = '0.6';
+    drawButton.style.cursor = 'not-allowed';
     
-    // Hide draw button during message display
-    // drawButton.style.display = 'none';
-    
-document.querySelector('.cards-container').classList.add('reveal');
-    
-    // Hide title and subtitle to save space
-    document.querySelector('.title').style.opacity = '0';
-    document.querySelector('.title').style.visibility = 'hidden';
-    document.querySelector('.subtitle').style.opacity = '0';
-    document.querySelector('.subtitle').style.visibility = 'hidden';
-    
-    // Optional: Hide instructions too
-    const instructions = document.querySelector('.instructions');
-    if (instructions) {
-      instructions.style.opacity = '0';
-      instructions.style.visibility = 'hidden';
-    }
-  }, 700);
+    shuffleCards();
+
+    setTimeout(() => {
+      const randomCardIndex = getRandomCardIndex();
+      const selectedCard = cards[randomCardIndex];
+      const messageEl = selectedCard.querySelector('.card-message');
+      const message = getRandomMessage();
+      messageEl.textContent = message;
+      console.log('DEBUG: Message set:', message);
+
+      // Flip selected first
+      selectedCard.classList.add('flipped');
+      
+      // Then fade out others
+      setTimeout(() => {
+        cards.forEach((card, index) => {
+          if (index !== randomCardIndex) {
+            card.classList.add('fade-out');
+          }
+        });
+      }, 300);
+
+      console.log('DEBUG: Card flipped, index:', randomCardIndex);
+      
+      document.querySelector('.cards-container').classList.add('reveal');
+      
+      // Hide title/subtitle/instructions after reveal
+      setTimeout(() => {
+        title.style.opacity = '0';
+        title.style.visibility = 'hidden';
+        subtitle.style.opacity = '0';
+        subtitle.style.visibility = 'hidden';
+        if (instructions) {
+          instructions.style.opacity = '0';
+          instructions.style.visibility = 'hidden';
+        }
+      }, 800);
+      
+      // Reset button after full animation
+      setTimeout(() => {
+        drawButton.disabled = false;
+        drawButton.style.opacity = '1';
+        drawButton.style.cursor = 'pointer';
+      }, 6000);
+      
+    }, 1000);
   } catch (error) {
     console.error('Reveal card error:', error);
+    const drawButton = document.getElementById('drawButton');
+    if (drawButton) {
+      drawButton.disabled = false;
+      drawButton.style.opacity = '1';
+      drawButton.style.cursor = 'pointer';
+    }
     alert('Error revealing card. Check console.');
   }
 }
