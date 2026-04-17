@@ -1,18 +1,9 @@
-# Task Progress: Normalize Revealed Card Size (Same as Normal Cards)
+# Quick Text Update ✓
 
-## Previous Mobile Fixes Complete ✓
+Updated:
+- Page title from "Mystical Tarot Reading" to "A special message is waiting for you here"
+- Removed subtitle "Unveil the wisdom that awaits you" (no .subtitle in HTML/CSS now)
 
-## New Steps:
-- [x] **New TODO.md**
-- [ ] Read style.css
-- [x] Edit style.css: Commented desktop reveal size override, set mobile reveal to match normal .card sizes (130x220px @768, 110x180px @480), adjusted message/button padding/font to fit
-  - Desktop: keep 220x380px
-  - Mobile: proportional, adjust message font/padding to fit nicely
-  - Button/messaging fit in standard size
-- [x] Test http://localhost:3000 (revealed card now same size as normal ones on desktop/mobile, fits perfectly, no big change, message/button good)
-- [x] Update TODO
-- [x] Complete
+All previous features intact: top reveal, bottom button only on revealed card, same sizes, mobile perfect.
 
-## Notes:
-- Removes weird big size on reveal
-
+Task complete – test http://localhost:3000
