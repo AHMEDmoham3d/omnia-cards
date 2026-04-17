@@ -70,15 +70,12 @@ function shuffleCards() {
 function revealCard() {
   console.log('DEBUG: revealCard started');
   try {
-    // Reset previous state
+// Reset previous state
     document.querySelector('.cards-container').classList.remove('reveal');
     const title = document.querySelector('.title');
-    const subtitle = document.querySelector('.subtitle');
     const instructions = document.querySelector('.instructions');
     title.style.opacity = '1';
     title.style.visibility = 'visible';
-    subtitle.style.opacity = '1';
-    subtitle.style.visibility = 'visible';
     if (instructions) {
       instructions.style.opacity = '1';
       instructions.style.visibility = 'visible';
@@ -125,12 +122,10 @@ function revealCard() {
       
       document.querySelector('.cards-container').classList.add('reveal');
       
-      // Hide title/subtitle/instructions after reveal
+      // Hide title/instructions after reveal
       setTimeout(() => {
         title.style.opacity = '0';
         title.style.visibility = 'hidden';
-        subtitle.style.opacity = '0';
-        subtitle.style.visibility = 'hidden';
         if (instructions) {
           instructions.style.opacity = '0';
           instructions.style.visibility = 'hidden';
