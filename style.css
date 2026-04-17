@@ -90,14 +90,18 @@ body {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin: 4rem auto;
+  margin: 1rem auto;
   flex-wrap: wrap;
   perspective: 1000px;
   position: relative;
+  min-height: 400px;
 }
 
 .cards-container.reveal {
   justify-content: center;
+  align-items: flex-start;
+  padding-top: 5rem;
+  margin: 2rem auto;
 }
 
 .card.fade-out {
