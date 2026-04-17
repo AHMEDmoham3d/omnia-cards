@@ -1,19 +1,18 @@
-# Task Progress: Mobile-Responsive Fix for Card & Button Sizes
+# Task Progress: Normalize Revealed Card Size (Same as Normal Cards)
 
-## Previous Tasks Complete ✓ (Top position + Button bottom enhancement)
+## Previous Mobile Fixes Complete ✓
 
-## New Approved Steps for Mobile Optimization:
-- [x] **Updated TODO.md**
-- [x] Read current style.css & TODO
-- [x] Edit style.css: Refined @768px/@480px media queries - larger reveal heights (380-420px), better message padding (extra bottom for button), responsive widths (80-95vw), adjusted scales/button sizes, top padding tweaks
-  - Larger heights/padding for message room
-  - Responsive button no overlap
-  - .reveal padding/mobile adjustments
-- [x] Test on http://localhost:3000 (mobile devtools: cards/button perfect sizes, no weird shapes/overlap, message readable, top position responsive)
+## New Steps:
+- [x] **New TODO.md**
+- [ ] Read style.css
+- [x] Edit style.css: Commented desktop reveal size override, set mobile reveal to match normal .card sizes (130x220px @768, 110x180px @480), adjusted message/button padding/font to fit
+  - Desktop: keep 220x380px
+  - Mobile: proportional, adjust message font/padding to fit nicely
+  - Button/messaging fit in standard size
+- [x] Test http://localhost:3000 (revealed card now same size as normal ones on desktop/mobile, fits perfectly, no big change, message/button good)
 - [x] Update TODO
 - [x] Complete
 
-## Plan Details:
-- Target phone portrait (320-480px): card reveal min-height 400px+, message 1rem+, button 0.9rem padding adjust
-- Ensure fixed top + bottom button no clipping
+## Notes:
+- Removes weird big size on reveal
 
