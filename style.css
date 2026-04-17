@@ -56,6 +56,10 @@ body {
   z-index: 1;
 }
 
+.cards-container.reveal ~ * {
+  display: none;
+}
+
 .title {
   font-size: 3.5rem;
   font-weight: 300;
@@ -96,6 +100,11 @@ body {
 
 .cards-container.reveal {
   justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .card.hidden {
@@ -111,8 +120,10 @@ body {
 }
 
 .cards-container.reveal .card {
-  width: 350px;
-  height: 550px;
+  width: 100vw;
+  height: 100vh;
+  max-width: 600px;
+  max-height: 800px;
 }
 
 .card:hover {
@@ -132,7 +143,7 @@ body {
 }
 
 .cards-container.reveal .card.flipped {
-  transform: translateY(-80px) scale(0.6) !important;
+  transform: none !important;
 }
 
 .card.flipped .card-back {
