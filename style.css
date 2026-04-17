@@ -56,9 +56,7 @@ body {
   z-index: 1;
 }
 
-.cards-container.reveal ~ * {
-  display: none;
-}
+
 
 .title {
   font-size: 3.5rem;
@@ -100,11 +98,6 @@ body {
 
 .cards-container.reveal {
   justify-content: center;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
 }
 
 .card.hidden {
@@ -120,10 +113,8 @@ body {
 }
 
 .cards-container.reveal .card {
-  width: 100vw;
-  height: 100vh;
-  max-width: 600px;
-  max-height: 800px;
+  width: 220px;
+  height: 380px;
 }
 
 .card:hover {
@@ -143,7 +134,7 @@ body {
 }
 
 .cards-container.reveal .card.flipped {
-  transform: none !important;
+  transform: scale(1.8) !important;
 }
 
 .card.flipped .card-back {
