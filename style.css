@@ -339,6 +339,10 @@ body {
   box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
 }
 
+.cards-container.reveal + .draw-button {
+  display: none;
+}
+
 .draw-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 30px rgba(212, 175, 55, 0.5);
