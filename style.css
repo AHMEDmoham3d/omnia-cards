@@ -134,7 +134,7 @@ body {
 }
 
 .cards-container.reveal .card.flipped {
-  transform: scale(1.8) !important;
+  transform: scale(1.3) !important;
 }
 
 .card.flipped .card-back {
@@ -201,18 +201,32 @@ body {
 }
 
 .card-front {
-  background: linear-gradient(135deg, #2d1b4e 0%, #1a0a2e 100%);
+  background: var(--card-bg);
   border: 2px solid var(--gold);
   transform: rotateY(180deg);
-  padding: 0.5rem 1rem;
+  padding: 1.5rem;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 0;
   position: relative;
+}
+
+.card-front .card-pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.1) 10px, rgba(212, 175, 55, 0.1) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.1) 10px, rgba(212, 175, 55, 0.1) 20px);
+  z-index: 1;
+}
+
+.card-front::before {
+  content: none;
 }
 
 .card-front::before {
@@ -410,7 +424,7 @@ body {
   }
 
   .card.flipped {
-    transform: scale(1.8) !important;
+    transform: scale(1.4) !important;
   }
 
   .card-message {
