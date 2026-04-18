@@ -113,6 +113,7 @@ function revealCard() {
       setTimeout(() => {
         cards.forEach((card, index) => {
           if (index !== randomCardIndex) {
+            card.style.display = 'none';
             card.classList.add('fade-out');
           }
         });
